@@ -1,0 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const ride_controller_1 = require("../controllers/ride.controller");
+const auth_middleware_1 = require("../middleware/auth.middleware");
+const auth_middleware_2 = require("../middleware/auth.middleware");
+const types_1 = require("../types");
+const router = (0, express_1.Router)();
+router.use(auth_middleware_1.protect);
+router.post("/book", (0, auth_middleware_2.authorize)(types_1.UserRole.RIDER), ride_controller_1.bookRide);
+router.get("/my", (0, auth_middleware_2.authorize)(types_1.UserRole.RIDER), ride_controller_1.getMyRides);
+router.patch("/:id/cancel", (0, auth_middleware_2.authorize)(types_1.UserRole.RIDER), ride_controller_1.cancelRide);
+router.get("/available", (0, auth_middleware_2.authorize)(types_1.UserRole.DRIVER), ride_controller_1.getAvailableRides);
+router.get("/fare-estimate", ride_controller_1.getFareEstimate);
+exports.default = router;
