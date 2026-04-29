@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
-import bcrypt from "bcryptjs";
+import * as bcrypt from "bcryptjs";
 import { UserRole, VehicleType } from "../types";
 
 // Base User Interface
