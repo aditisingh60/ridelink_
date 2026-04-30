@@ -2,7 +2,9 @@
 
 > A ride-hailing system built as a System Design & OOP project, demonstrating real-world software architecture principles including Design Patterns, SOLID, and UML-based modeling.
 
-🌐 **Live Demo:** [https://ridelinksysdes.netlify.app/](https://ridelinksysdes.netlify.app/)
+🌐 **Live Demo:** [https://ride-link-rose.vercel.app/](https://ride-link-rose.vercel.app/)  
+🔗 **GitHub:** [https://github.com/pragya238/RideLink](https://github.com/pragya238/RideLink)  
+⚙️ **Backend API:** [https://ridelink-7szz.onrender.com/api/health](https://ridelink-7szz.onrender.com/api/health)
 
 ---
 
@@ -28,7 +30,7 @@ The system supports JWT-based authentication, role-based access control, dynamic
 | **Backend** | Node.js, Express 5, TypeScript |
 | **Database** | MongoDB (Mongoose ODM) |
 | **Auth** | JWT (jsonwebtoken), bcryptjs |
-| **Hosting** | Netlify (Frontend), configurable for any Node host |
+| **Hosting** | Vercel (Frontend), Render (Backend) |
 | **Design Patterns** | Factory, Strategy, Observer, Singleton |
 | **Modeling** | UML (Class, Use Case, Sequence Diagrams) |
 | **Version Control** | Git / GitHub |
@@ -114,10 +116,18 @@ ridelink_/
 
 ```bash
 cd backend
-cp .env.example .env        # fill in MONGO_URI, JWT_SECRET, CLIENT_URL
+cp .env.example .env        # fill in MONGO_URI, JWT_SECRET
 npm install
 npm run dev                 # starts on http://localhost:5001
 ```
+
+Required environment variables (`.env`):
+
+| Variable | Description |
+|---|---|
+| `MONGO_URI` | MongoDB Atlas connection string |
+| `JWT_SECRET` | Secret key for signing JWT tokens |
+| `PORT` | Port to run the server on (default: 5001) |
 
 ### Frontend
 
@@ -127,6 +137,21 @@ cp .env.example .env        # set VITE_API_URL=http://localhost:5001
 npm install
 npm run dev                 # starts on http://localhost:5173
 ```
+
+Required environment variables (`.env`):
+
+| Variable | Description |
+|---|---|
+| `VITE_API_URL` | Backend base URL (e.g. `http://localhost:5001`) |
+
+> **Production:** The `frontend/.env.production` file is pre-configured to point to the deployed Render backend (`https://ridelink-7szz.onrender.com`). No extra configuration is needed for Vercel deploys.
+
+### Deployment
+
+| Layer | Platform | Notes |
+|---|---|---|
+| **Frontend** | [Vercel](https://vercel.com) | Connect GitHub repo, set root to `frontend/`, build command `npm run build`, output dir `dist` |
+| **Backend** | [Render](https://render.com) | Connect GitHub repo, set root to `backend/`, build command `npm run build`, start command `node dist/index.js` |
 
 ---
 
